@@ -1,0 +1,147 @@
+import 'package:flutter/material.dart';
+import 'package:news/components/news_of_day_item.dart';
+import 'package:news/components/tranding_news.dart';
+
+class HomeView extends StatefulWidget {
+  const HomeView({super.key});
+
+  @override
+  State<HomeView> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'NEWSEEKERS',
+          style: Theme.of(context).textTheme.headlineSmall,
+        ),
+      ),
+
+      bottomNavigationBar: Container(
+        height: 60,
+        color: Theme.of(context).colorScheme.onSurface,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            IconButton(
+              icon: Icon(Icons.home, color: Theme.of(context).colorScheme.onPrimary),
+              onPressed: () {
+                // Navigate to home
+              },
+            ),
+            IconButton(
+              icon: Icon(Icons.search, color: Theme.of(context).colorScheme.onPrimary),
+              onPressed: () {
+                // Navigate to search
+              },
+            ),
+            IconButton(
+              icon: Icon(Icons.person, color:Theme.of(context).colorScheme.onPrimary),
+              onPressed: () {
+                // Navigate to profile
+              },
+            ),
+          ],
+        ),
+      ),
+
+      body: Padding(
+        padding: const EdgeInsets.all(18.0),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'HottestNews',
+                    style: Theme.of(context).textTheme.bodyLarge,
+                  ),
+                  Text('see all', style: Theme.of(context).textTheme.bodyMedium),
+                ],
+              ),
+              SizedBox(height: 20),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    HotestNewsItem(
+                      title:
+                          'हिमांशी खुराना ने पंजाबी फिल्म इंडस्ट्री से जुड़े एक व्यक्ति पर गंभीर आरोप लगाए हैं',
+                      image:
+                          'https://akm-img-a-in.tosshub.com/aajtak/images/story/202504/6806640539622-himanshi-khurana-212759329-16x9.jpg?size=948:533',
+                      author: 'Aaj Tak',
+                      tag: 'Entertainment',
+                      time: '5 min ago',
+                    ),
+                    HotestNewsItem(
+                      title:
+                          'हसुप्रीम कोर्ट और बीजेपी नेताओं के बीच बढ़ते विवाद ने राजनीति में नई हलचल मचा दी है.',
+                      image:
+                          'https://www.newstak.in/_next/image?url=https%3A%2F%2Fcf-img-a-in.tosshub.com%2Flingo%2Fnwtak%2Fimages%2Fstory%2F202504%2F68070b8e66bc3-supreme-court-22224927-16x9.png&w=1920&q=75',
+                      author: 'Aaj Tak',
+                      tag: 'Politics',
+                      time: '51 min ago',
+                    ),
+                    HotestNewsItem(
+                      title:
+                          'Right Way to Sleep: पोस्चर एक्सपर्ट जेम्स लेइनहार्ट के अनुसार,क्वाटर पोजीशन रीढ़ के लिए सबसे खराब होता हैं',
+                      image:
+                          'https://akm-img-a-in.tosshub.com/aajtak/images/story/202504/67ed08e0a5972-right-way-to-sleep-025226812-16x9.jpg?size=948:533',
+                      author: 'Nwstak',
+                      tag: 'Health',
+                      time: '15 min ago',
+                    ),
+                  ],
+                ),
+              ),
+          
+              SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'News of the day',
+                    style: Theme.of(context).textTheme.bodyLarge,
+                  ),
+                  Text('see all', style: Theme.of(context).textTheme.bodyMedium),
+                ],
+              ),
+              SizedBox(height: 10),
+              NewsDayItem(
+                title:
+                    'हसुप्रीम कोर्ट और बीजेपी नेताओं के बीच बढ़ते विवाद ने राजनीति में नई हलचल मचा दी है.',
+                image:
+                    'https://www.newstak.in/_next/image?url=https%3A%2F%2Fcf-img-a-in.tosshub.com%2Flingo%2Fnwtak%2Fimages%2Fstory%2F202504%2F68070b8e66bc3-supreme-court-22224927-16x9.png&w=1920&q=75',
+                author: 'Aaj Tak',
+                tag: 'Politics',
+                time: '51 min ago',
+              ),
+              NewsDayItem(
+                title:
+                'हसुप्रीम कोर्ट और बीजेपी नेताओं के बीच बढ़ते विवाद ने राजनीति में नई हलचल मचा दी है.',
+                image:
+                'https://www.newstak.in/_next/image?url=https%3A%2F%2Fcf-img-a-in.tosshub.com%2Flingo%2Fnwtak%2Fimages%2Fstory%2F202504%2F68070b8e66bc3-supreme-court-22224927-16x9.png&w=1920&q=75',
+                author: 'Aaj Tak',
+                tag: 'Politics',
+                time: '51 min ago',
+              ),NewsDayItem(
+                title:
+                'हसुप्रीम कोर्ट और बीजेपी नेताओं के बीच बढ़ते विवाद ने राजनीति में नई हलचल मचा दी है.',
+                image:
+                'https://www.newstak.in/_next/image?url=https%3A%2F%2Fcf-img-a-in.tosshub.com%2Flingo%2Fnwtak%2Fimages%2Fstory%2F202504%2F68070b8e66bc3-supreme-court-22224927-16x9.png&w=1920&q=75',
+                author: 'Aaj Tak',
+                tag: 'Politics',
+                time: '51 min ago',
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
