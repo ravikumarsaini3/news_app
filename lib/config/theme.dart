@@ -25,7 +25,8 @@ var lightTheme = ThemeData(
 
 var darkTheme = ThemeData(
   brightness: Brightness.dark,
-  scaffoldBackgroundColor: AppColors.darkBackground,
+
+//  scaffoldBackgroundColor: AppColors.darkBackground,
   colorScheme: ColorScheme(
     brightness: Brightness.dark,
     primary: AppColors.darkPrimary,
