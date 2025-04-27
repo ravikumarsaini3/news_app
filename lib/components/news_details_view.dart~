@@ -43,6 +43,7 @@ class NewsDetailsViewItem extends StatelessWidget {
                         return Center(child: Icon(Icons.error, color: Colors.red));
                       },
                       imageUrl: image,
+                      height: 300,
                       fit: BoxFit.fill,
 
                       placeholder:

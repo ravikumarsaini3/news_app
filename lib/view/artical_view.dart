@@ -1,70 +1,102 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:news/data/services/news_services.dart';
 
 import '../components/news_of_day_item.dart';
+import '../components/simmar.dart';
+import '../data/controller/api_controller.dart';
 
-class ArticalView extends StatelessWidget {
-  const ArticalView({super.key});
+class ArticalView extends StatefulWidget {
+  ArticalView({super.key});
+
+  @override
+  State<ArticalView> createState() => _ArticalViewState();
+}
+
+class _ArticalViewState extends State<ArticalView> {
+  ApiController apiController = Get.put(ApiController());
+
+  var searchController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: SafeArea(
-        child: ListView(
+        child: Column(
           children: [
-            SizedBox(height: 20,),
+            SizedBox(height: 20),
             Padding(
-              padding: const EdgeInsets.all(18.0),
+              padding: EdgeInsets.all(18.0),
               child: TextField(
+                controller: searchController,
                 decoration: InputDecoration(
                   suffixIcon: Padding(
-                    padding: const EdgeInsets.only(right: 5),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.amber
-                      ),
+                      padding: EdgeInsets.only(right: 10),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.amber,
+                        ),
 
-                        child: Icon(Icons.search,color: Theme.of(context).colorScheme.onPrimary,)),
-                  ),
+                        child: Icon(
+                          Icons.search,
+                          color: Theme.of(context).colorScheme.onPrimary,
+                        ),
+                      ),
+                    ),
+
                   border: OutlineInputBorder(
                     borderSide: BorderSide.none,
-                      borderRadius: BorderRadius.circular(20)),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
                   filled: true,
+
                   fillColor: Theme.of(context).colorScheme.onSurface,
-                  hintText: 'Search Article ....',
-                    hintStyle: TextStyle(
-                      color: Theme.of(context).colorScheme.onPrimary
-                    )
+                  hintText: 'Search Article here ....',
+                  hintStyle: TextStyle(
+                    color: Theme.of(context).colorScheme.onPrimary,
+                  ),
                 ),
+                onChanged: (value) {
+                  apiController.searchNews(value);
+                },
               ),
             ),
-            SizedBox(height: 20,),
-            NewsDayItem(
-              title:
-              'हसुप्रीम कोर्ट और बीजेपी नेताओं के बीच बढ़ते विवाद ने राजनीति में नई हलचल मचा दी है.',
-              image:
-              'https://www.newstak.in/_next/image?url=https%3A%2F%2Fcf-img-a-in.tosshub.com%2Flingo%2Fnwtak%2Fimages%2Fstory%2F202504%2F68070b8e66bc3-supreme-court-22224927-16x9.png&w=1920&q=75',
-              author: 'Aaj Tak',
-              tag: 'Politics',
-              time: '51 min ago',
-            ),
-            NewsDayItem(
-              title:
-              'हसुप्रीम कोर्ट और बीजेपी नेताओं के बीच बढ़ते विवाद ने राजनीति में नई हलचल मचा दी है.',
-              image:
-              'https://www.newstak.in/_next/image?url=https%3A%2F%2Fcf-img-a-in.tosshub.com%2Flingo%2Fnwtak%2Fimages%2Fstory%2F202504%2F68070b8e66bc3-supreme-court-22224927-16x9.png&w=1920&q=75',
-              author: 'Aaj Tak',
-              tag: 'Politics',
-              time: '51 min ago',
-            ), NewsDayItem(
-              title:
-              'हसुप्रीम कोर्ट और बीजेपी नेताओं के बीच बढ़ते विवाद ने राजनीति में नई हलचल मचा दी है.',
-              image:
-              'https://www.newstak.in/_next/image?url=https%3A%2F%2Fcf-img-a-in.tosshub.com%2Flingo%2Fnwtak%2Fimages%2Fstory%2F202504%2F68070b8e66bc3-supreme-court-22224927-16x9.png&w=1920&q=75',
-              author: 'Aaj Tak',
-              tag: 'Politics',
-              time: '51 min ago',
+            SizedBox(height: 20),
+
+            Expanded(
+              child: Obx(() {
+                final filter = apiController.filterTeslaNewsList.toList();
+                if (filter.isEmpty) {
+                  return Center(
+                    child: Text(
+                      'No result found',
+                      style: Theme.of(context).textTheme.headlineLarge,
+                    ),
+                  );
+                }
+                if (apiController.filterTeslaNewsList.isEmpty) {
+                  return AppSimmer.columnSimmar();
+                }
+                return ListView.builder(
+                  itemCount: filter.length,
+                  itemBuilder: (context, index) {
+                    final element = filter.toList()[index];
+                    return NewsDayItem(
+                      title: element.title??'No title',
+                      image:
+                          element.urlToImage ??
+                          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQoFRQjM-wM_nXMA03AGDXgJK3VeX7vtD3ctA&s',
+
+                      author: element.author,
+                      tag: 'General',
+                      time: element.publishedAt.toString().substring(0, 18),
+                      dec: element.description,
+                      cont: element.content,
+                    );
+                  },
+                );
+              }),
             ),
           ],
         ),

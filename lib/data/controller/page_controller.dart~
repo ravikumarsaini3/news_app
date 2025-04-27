@@ -15,6 +15,9 @@ class PageController2 extends GetxController{
   ProfileView(),
   ];
 
+  void isSearch(){
+
+  }
 
 
 

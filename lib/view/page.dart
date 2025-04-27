@@ -9,6 +9,7 @@ PageController2 pagecnt=Get.put(PageController2());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.background,
       floatingActionButton: NavigationBar2(),
       body:Obx(() => pagecnt.pages[pagecnt.index.value] ,)
 

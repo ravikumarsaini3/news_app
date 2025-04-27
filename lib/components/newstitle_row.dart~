@@ -1,0 +1,40 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../data/controller/api_controller.dart';
+
+class NewsRow extends StatelessWidget {
+  final String title;
+  final bool isList;
+  final VoidCallback onTap;
+
+  NewsRow({
+    super.key,
+    required this.title,
+    required this.onTap,
+    required this.isList,
+  });
+
+  ApiController apiController = Get.put(ApiController());
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text('$title', style: Theme.of(context).textTheme.titleMedium),
+
+        GestureDetector(
+          onTap: onTap,
+          child: Padding(
+            padding: const EdgeInsets.only(right: 6),
+            child: Text(
+              isList ? 'Show less' : 'See all',
+              style: Theme.of(context).textTheme.bodyLarge,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}

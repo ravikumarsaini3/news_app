@@ -6,7 +6,7 @@ import 'package:news/view/news_details_view.dart';
 import 'package:shimmer/shimmer.dart';
 
 class NewsDayItem extends StatelessWidget {
-  final String title;
+  final String? title;
   final String? image;
   final String? tag;
   final String? time;
@@ -88,7 +88,7 @@ class NewsDayItem extends StatelessWidget {
                   children: [
                     CircleAvatar(
                       backgroundColor: Theme.of(context).colorScheme.primary,
-                      radius: 15,child: Text(title[0]) ,),
+                      radius: 15,child: Text('g') ,),
                     SizedBox(width: 10),
                     Flexible(
                       child: Text(

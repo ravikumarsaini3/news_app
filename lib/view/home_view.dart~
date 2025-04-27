@@ -60,46 +60,6 @@ class _HomeViewState extends State<HomeView> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Obx(
-                    () => NewsRow(
-                  title: 'Business News',
-                  onTap: apiController.toggleListbusinessNews,
-                  isList: apiController.isBussiness.value,
-                ),
-              ),
-              SizedBox(height: 20),
-              Obx(() {
-                return apiController.businessNewsList.isEmpty
-                    ? AppSimmer.rowSimmer()
-                    : SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children:
-                    apiController.businessNewsList10
-                        .map(
-                          (e) => GestureDetector(
-                        onTap:
-                            () => Get.to(NewsDetailsView(model: e)),
-                        child: HotestNewsItem(
-                          title: '${e.title}',
-                          image: '${e.urlToImage}',
-                          author: '${e.author ?? 'Unknown'}',
-                          tag: 'd',
-                          time: e.publishedAt.toString().substring(
-                            10,
-                            18,
-                          ),
-                          dec: e.description ?? 'No description',
-                          cont: e.content ?? 'No content',
-                        ),
-                      ),
-                    )
-                        .toList(),
-                  ),
-                );
-              }),
-
-              SizedBox(height: 20),
-              Obx(
                 () => NewsRow(
                   title: 'TechCrunch News',
                   onTap: apiController.toggleListTechCrunch,
@@ -138,7 +98,46 @@ class _HomeViewState extends State<HomeView> {
                     );
               }),
               SizedBox(height: 20),
+              Obx(
+                    () => NewsRow(
+                  title: 'Business News',
+                  onTap: apiController.toggleListbusinessNews,
+                  isList: apiController.isBussiness.value,
+                ),
+              ),
+              SizedBox(height: 20),
+              Obx(() {
+                return apiController.businessNewsList.isEmpty
+                    ? AppSimmer.rowSimmer()
+                    : SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children:
+                            apiController.businessNewsList10
+                                .map(
+                                  (e) => GestureDetector(
+                                    onTap:
+                                        () => Get.to(NewsDetailsView(model: e)),
+                                    child: HotestNewsItem(
+                                      title: '${e.title}',
+                                      image: '${e.urlToImage}',
+                                      author: '${e.author ?? 'Unknown'}',
+                                      tag: 'd',
+                                      time: e.publishedAt.toString().substring(
+                                        10,
+                                        18,
+                                      ),
+                                      dec: e.description ?? 'No description',
+                                      cont: e.content ?? 'No content',
+                                    ),
+                                  ),
+                                )
+                                .toList(),
+                      ),
+                    );
+              }),
 
+              SizedBox(height: 20),
               Obx(
                     () => NewsRow(
                   title: 'Tesla News',

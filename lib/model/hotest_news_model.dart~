@@ -1,28 +1,28 @@
 // To parse this JSON data, do
 //
-//     final dailyNewsModel = dailyNewsModelFromJson(jsonString);
+//     final hotestNewsModel = hotestNewsModelFromJson(jsonString);
 
 import 'dart:convert';
 
-DailyNewsModel dailyNewsModelFromJson(String str) => DailyNewsModel.fromJson(json.decode(str));
+HotestNewsModel hotestNewsModelFromJson(String str) => HotestNewsModel.fromJson(json.decode(str));
 
-String dailyNewsModelToJson(DailyNewsModel data) => json.encode(data.toJson());
+String hotestNewsModelToJson(HotestNewsModel data) => json.encode(data.toJson());
 
-class DailyNewsModel {
+class HotestNewsModel {
   String status;
   int totalResults;
-  List<Article2> articles;
+  List<Article> articles;
 
-  DailyNewsModel({
+  HotestNewsModel({
     required this.status,
     required this.totalResults,
     required this.articles,
   });
 
-  factory DailyNewsModel.fromJson(Map<String, dynamic> json) => DailyNewsModel(
+  factory HotestNewsModel.fromJson(Map<String, dynamic> json) => HotestNewsModel(
     status: json["status"],
     totalResults: json["totalResults"],
-    articles: List<Article2>.from(json["articles"].map((x) => Article2.fromJson(x))),
+    articles: List<Article>.from(json["articles"].map((x) => Article.fromJson(x))),
   );
 
   Map<String, dynamic> toJson() => {
@@ -32,7 +32,7 @@ class DailyNewsModel {
   };
 }
 
-class Article2 {
+class Article {
   Source source;
   String? author;
   String title;
@@ -40,9 +40,9 @@ class Article2 {
   String url;
   String? urlToImage;
   DateTime publishedAt;
-  String content;
+  String? content;
 
-  Article2({
+  Article({
     required this.source,
     required this.author,
     required this.title,
@@ -53,15 +53,15 @@ class Article2 {
     required this.content,
   });
 
-  factory Article2.fromJson(Map<String, dynamic> json) => Article2(
+  factory Article.fromJson(Map<String, dynamic> json) => Article(
     source: Source.fromJson(json["source"]),
-    author: json["author"],
-    title: json["title"],
-    description: json["description"],
-    url: json["url"],
-    urlToImage: json["urlToImage"],
+    author: json["author"]??'Unknownmodel',
+    title: json["title"]??'No title',
+    description: json["description"]??'No description',
+    url: json["url"]??'No url',
+    urlToImage: json["urlToImage"]??'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQoFRQjM-wM_nXMA03AGDXgJK3VeX7vtD3ctA&s',
     publishedAt: DateTime.parse(json["publishedAt"]),
-    content: json["content"],
+    content: json["content"]??'No content',
   );
 
   Map<String, dynamic> toJson() => {

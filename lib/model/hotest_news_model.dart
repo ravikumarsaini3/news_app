@@ -55,13 +55,13 @@ class Article {
 
   factory Article.fromJson(Map<String, dynamic> json) => Article(
     source: Source.fromJson(json["source"]),
-    author: json["author"],
-    title: json["title"],
-    description: json["description"],
-    url: json["url"],
-    urlToImage: json["urlToImage"],
+    author: json["author"]??'Unknown',
+    title: json["title"]??'No title',
+    description: json["description"]??'No description',
+    url: json["url"]??'No url',
+    urlToImage: json["urlToImage"]??'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQoFRQjM-wM_nXMA03AGDXgJK3VeX7vtD3ctA&s',
     publishedAt: DateTime.parse(json["publishedAt"]),
-    content: json["content"],
+    content: json["content"]??'No content',
   );
 
   Map<String, dynamic> toJson() => {

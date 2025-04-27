@@ -1,17 +1,20 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:news/model/hotest_news_model.dart';
 import 'package:shimmer/shimmer.dart';
 
 class NewsDetailsViewItem extends StatelessWidget {
-  final String title;
-  final String image;
-  final String tag;
-  final String time;
-  final String author;
-  final String? dec;
-  final String? cont;
+  // final String title;
+  // final String image;
+  // final String tag;
+  // final String time;
+  // final String author;
+  // final String? dec;
+  // final String? cont;
+  final Article model;
+  NewsDetailsViewItem({super.key, required this.model});
 
-  const NewsDetailsViewItem({super.key, required this.title, required this.image, required this.tag, required this.time, required this.author, this.dec,  this.cont});
+ // const NewsDetailsViewItem({super.key, required this.title, required this.image, required this.tag, required this.time, required this.author, this.dec,  this.cont});
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +45,7 @@ class NewsDetailsViewItem extends StatelessWidget {
                       errorWidget: (context, url, error) {
                         return Center(child: Icon(Icons.error, color: Colors.red));
                       },
-                      imageUrl: image,
+                      imageUrl: model.urlToImage!,
                       height: 300,
                       fit: BoxFit.fill,
 
@@ -57,19 +60,19 @@ class NewsDetailsViewItem extends StatelessWidget {
                 ),
                 SizedBox(height: 20),
                 Text(
-                  '$title',
+                  model.title,
                   style: Theme.of(context).textTheme.titleLarge,
                 ),
                 SizedBox(height: 10),
                 Row(
                   children: [
                     Text(
-                      '$time',
+                      model.publishedAt.toString().substring(0,15),
                       style: Theme.of(context).textTheme.bodyMedium,
                     ),
                     Spacer(),
                     Text(
-                      '$author ',
+                      model.author.toString(),
                       style: Theme.of(context).textTheme.bodyMedium,
                     ),
                   ],
@@ -81,7 +84,7 @@ class NewsDetailsViewItem extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
-              '$cont',
+              model.content.toString(),
               style: Theme.of(context).textTheme.bodyLarge,
             ),
           ),
@@ -89,7 +92,7 @@ class NewsDetailsViewItem extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
-              '$dec',
+              model.description.toString(),
               style: Theme.of(context).textTheme.bodyLarge,
             ),
           ),
