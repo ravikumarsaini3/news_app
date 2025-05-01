@@ -3,7 +3,7 @@
 📰 **Stay Informed in Style**  
 
 NewsWave is a cutting-edge news application built with Flutter that delivers a premium news browsing experience. Powered by the News API, this app combines elegant design with powerful functionality to keep you updated on global happenings.
-
+[Download](https://github.com/ravikumarsaini3/news_app/releases/download/v1v1/app-release.apk)
 
 
 ## ✨ Key Features
