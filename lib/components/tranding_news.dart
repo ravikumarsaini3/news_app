@@ -54,20 +54,23 @@ class HotestNewsItem extends StatelessWidget {
                 ),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(10),
-                  child: CachedNetworkImage(
-                    imageUrl:image,
-                    fit: BoxFit.cover,
-                    errorWidget: (context, url, error) {
-                      return Center(
-                        child: Icon(Icons.error, color: Colors.red),
-                      );
-                    },
-                    placeholder:
-                        (context, url) => Shimmer.fromColors(
-                          baseColor: Colors.grey,
-                          highlightColor: Colors.white,
-                          child: Container(color: Colors.grey),
-                        ),
+                  child: Hero(
+                  tag: 'image',
+                    child: CachedNetworkImage(
+                      imageUrl:image,
+                      fit: BoxFit.cover,
+                      errorWidget: (context, url, error) {
+                        return Center(
+                          child: Icon(Icons.error, color: Colors.red),
+                        );
+                      },
+                      placeholder:
+                          (context, url) => Shimmer.fromColors(
+                            baseColor: Colors.grey,
+                            highlightColor: Colors.white,
+                            child: Container(color: Colors.grey),
+                          ),
+                    ),
                   ),
                 ),
               ),

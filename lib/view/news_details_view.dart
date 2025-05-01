@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 import 'package:news/model/hotest_news_model.dart';
 
 import '../components/news_details_view.dart';
@@ -50,7 +51,10 @@ class NewsDetailsView extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 20),
-              NewsDetailsViewItem(model: model)
+
+
+              SizedBox(),
+              NewsDetailsViewItem(model: model),
               // NewsDetailsViewItem(title: '$title',image: '$image',time: '$time',tag: '',author: '$author',dec: '$dec',cont: '$cont',)
 
             ],

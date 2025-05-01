@@ -51,18 +51,21 @@ class NewsDayItem extends StatelessWidget {
             ),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(10),
-              child: CachedNetworkImage(
-                errorWidget: (context, url, error) {
-                  return Center(child: Icon(Icons.error, color: Colors.red));
-                },
-                imageUrl: image??'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQoFRQjM-wM_nXMA03AGDXgJK3VeX7vtD3ctA&s',
-                fit: BoxFit.fill,
-                placeholder:
-                    (context, url) => Shimmer.fromColors(
-                      baseColor: Colors.grey,
-                      highlightColor: Colors.white,
-                      child: Container(color: Colors.grey),
-                    ),
+              child: Hero(
+                tag: 'image',
+                child: CachedNetworkImage(
+                  errorWidget: (context, url, error) {
+                    return Center(child: Icon(Icons.error, color: Colors.red));
+                  },
+                  imageUrl: image??'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQoFRQjM-wM_nXMA03AGDXgJK3VeX7vtD3ctA&s',
+                  fit: BoxFit.fill,
+                  placeholder:
+                      (context, url) => Shimmer.fromColors(
+                        baseColor: Colors.grey,
+                        highlightColor: Colors.white,
+                        child: Container(color: Colors.grey),
+                      ),
+                ),
               ),
             ),
           ),

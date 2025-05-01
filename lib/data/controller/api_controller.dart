@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 import 'package:get/get.dart';
 import 'package:news/data/services/news_services.dart';
 
@@ -23,34 +24,53 @@ class ApiController extends GetxController {
   var isApple = false.obs;
   var search = ''.obs;
   var isSearch = false.obs;
+  var isSpeak = false.obs;
 
-var isDark = false.obs;
-  ThemeMode get themeMode =>isDark.value ? ThemeMode.dark : ThemeMode.light;
+  FlutterTts flutterTts = FlutterTts();
+
+  Future<void> speak(String text) async {
+    isSpeak.value = true;
+
+    await flutterTts.setLanguage('en-US');
+    await flutterTts.setPitch(1);
+    await flutterTts.speak(text);
+    await flutterTts.awaitSpeakCompletion(true);
+    isSpeak.value = false;
+  }
+
+  Future<void> pause() async {
+    await flutterTts.pause();
+
+    isSpeak.value = false;
+  }
+  Future<void> stop() async {
+    await flutterTts.stop();
+
+    isSpeak.value = false;
+  }
+
+
+  var isDark = false.obs;
+
+  ThemeMode get themeMode => isDark.value ? ThemeMode.dark : ThemeMode.light;
+
   void changeTheme(bool isDark2) {
     isDark.value = isDark2;
-     Get.changeThemeMode(isDark2? ThemeMode.dark : ThemeMode.light);
-
+    Get.changeThemeMode(isDark2 ? ThemeMode.dark : ThemeMode.light);
   }
 
   void searchNews(String query) async {
     try {
-
-
       if (query.isEmpty) {
         filterTeslaNewsList.assignAll(teslaNewsList);
       } else {
-
-
         filterTeslaNewsList.assignAll(
           teslaNewsList
               .where((p) => p.title.toString().toLowerCase().contains(query))
               .toList(),
         );
-
       }
     } catch (e) {
-
-
       print(e);
     }
   }

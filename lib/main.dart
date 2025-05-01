@@ -4,6 +4,7 @@ import 'package:news/config/theme.dart';
 import 'package:news/data/controller/api_controller.dart';
 import 'package:news/view/artical_view.dart';
 import 'package:news/view/home_view.dart';
+import 'package:news/view/news_details_view.dart';
 import 'package:news/view/page.dart';
 import 'package:news/view/profile_view.dart';
 import 'package:news/view/splash_screen.dart';
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
             themeMode:apiController.themeMode,
             theme: lightTheme,
             darkTheme: darkTheme,
-            home:SplashScreen()
+            home:HomeView()
 
             ),
       );
