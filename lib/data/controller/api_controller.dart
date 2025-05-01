@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:news/data/services/news_services.dart';
 
@@ -22,6 +23,14 @@ class ApiController extends GetxController {
   var isApple = false.obs;
   var search = ''.obs;
   var isSearch = false.obs;
+
+var isDark = false.obs;
+  ThemeMode get themeMode =>isDark.value ? ThemeMode.dark : ThemeMode.light;
+  void changeTheme(bool isDark2) {
+    isDark.value = isDark2;
+     Get.changeThemeMode(isDark2? ThemeMode.dark : ThemeMode.light);
+
+  }
 
   void searchNews(String query) async {
     try {

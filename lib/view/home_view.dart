@@ -8,6 +8,7 @@ import 'package:news/components/simmar.dart';
 import 'package:news/components/tranding_news.dart';
 import 'package:news/data/controller/api_controller.dart';
 import 'package:news/view/news_details_view.dart';
+import 'package:news/view/profile_view.dart';
 import 'package:shimmer/shimmer.dart';
 
 class HomeView extends StatefulWidget {
@@ -31,6 +32,7 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   Widget build(BuildContext context) {
+    print('home');
     return Scaffold(
       appBar: AppBar(
         title: Row(
@@ -45,9 +47,13 @@ class _HomeViewState extends State<HomeView> {
               style: Theme.of(context).textTheme.headlineSmall,
             ),
             Spacer(),
-            Icon(
-              Icons.account_circle,
-              color: Theme.of(context).colorScheme.onPrimary,
+            InkWell(
+              onTap: () => Get.to(ProfileView()),
+              child: Image.network(
+                height: 40,
+                width: 40,
+                'https://cdn-icons-png.flaticon.com/512/3135/3135715.png',
+              ),
             ),
           ],
         ),

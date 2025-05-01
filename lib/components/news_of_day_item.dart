@@ -88,7 +88,7 @@ class NewsDayItem extends StatelessWidget {
                   children: [
                     CircleAvatar(
                       backgroundColor: Theme.of(context).colorScheme.primary,
-                      radius: 15,child: Text(title[0]) ,),
+                      radius: 15,child: Text(title[0],style: TextStyle(color: Colors.white),),),
                     SizedBox(width: 10),
                     Flexible(
                       child: Text(

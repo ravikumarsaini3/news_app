@@ -11,8 +11,7 @@ class SplashScreen extends StatelessWidget {
   ApiController newsServices = Get.put(ApiController());
   Future<dynamic> _pageLoad()async{
    await Future.wait<void>([
-   // newsServices.techCrunchtNews(),
-   // newsServices.businessNews(),
+
 
    newsServices.appletNews(),
    newsServices.teslaNews(),

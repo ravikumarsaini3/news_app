@@ -13,8 +13,8 @@ class SplashScreen extends StatelessWidget {
    await Future.wait<void>([
 
 
-   newsServices.appletNews(),
    newsServices.teslaNews(),
+   newsServices.appletNews(),
     ] );
 
   }

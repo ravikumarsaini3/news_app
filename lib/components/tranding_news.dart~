@@ -94,7 +94,7 @@ class HotestNewsItem extends StatelessWidget {
               CircleAvatar(
 
                 backgroundColor: Theme.of(context).colorScheme.primary,
-                child:Text(title[0],style: TextStyle(color: Colors.white),),
+                child:Text(title[0]),
 
 
                 radius: 15,

@@ -21,6 +21,7 @@ class _ArticalViewState extends State<ArticalView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       body: SafeArea(
         child: Column(
           children: [
@@ -71,7 +72,7 @@ class _ArticalViewState extends State<ArticalView> {
                   return Center(
                     child: Text(
                       'No result found',
-                      style: Theme.of(context).textTheme.headlineLarge,
+                      style: Theme.of(context).textTheme.titleLarge,
                     ),
                   );
                 }
