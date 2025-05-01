@@ -7,7 +7,7 @@ import 'package:shimmer/shimmer.dart';
 class HotestNewsItem extends StatelessWidget {
   final String title;
   final String image;
-  final String tag;
+
   final String time;
   final String author;
   final String? cont;
@@ -17,8 +17,7 @@ class HotestNewsItem extends StatelessWidget {
     super.key,
     required this.title,
     required this.image,
-    required this.tag,
-    required this.time,
+     required this.time,
     required this.author,
     this.dec,
     this.cont,
@@ -44,7 +43,7 @@ class HotestNewsItem extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 4),
               child: Container(
-                padding: EdgeInsets.all(4),
+                padding: EdgeInsets.all(2),
                 height: hieght/4,
 
                 width: width/1.4,

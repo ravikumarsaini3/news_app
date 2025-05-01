@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
             themeMode:apiController.themeMode,
             theme: lightTheme,
             darkTheme: darkTheme,
-            home:HomeView()
+            home:SplashScreen()
 
             ),
       );

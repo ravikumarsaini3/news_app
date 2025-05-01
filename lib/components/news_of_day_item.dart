@@ -95,7 +95,7 @@ class NewsDayItem extends StatelessWidget {
                     SizedBox(width: 10),
                     Flexible(
                       child: Text(
-                        author??'No Author',
+                        author??'No Author'.substring(0,10),
                         overflow: TextOverflow.ellipsis,
                         style: Theme.of(context).textTheme.bodyMedium,
                       ),

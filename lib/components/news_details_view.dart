@@ -82,6 +82,7 @@ ApiController apiController=Get.put(ApiController());
                     Spacer(),
                     Text(
                       model.author.toString(),
+                      overflow: TextOverflow.ellipsis,
                       style: Theme.of(context).textTheme.bodyMedium,
                     ),
                   ],

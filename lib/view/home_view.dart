@@ -89,7 +89,7 @@ class _HomeViewState extends State<HomeView> {
                           title: '${e.title}',
                           image: '${e.urlToImage}',
                           author: '${e.author ?? 'Unknown'}',
-                          tag: 'd',
+
                           time: e.publishedAt.toString().substring(
                             10,
                             18,
@@ -129,7 +129,7 @@ class _HomeViewState extends State<HomeView> {
                                       title: '${e.title}',
                                       image: '${e.urlToImage}',
                                       author: '${e.author ?? 'Unknown'}',
-                                      tag: '',
+
                                       time: e.publishedAt.toString().substring(
                                         10,
                                         18,
@@ -162,19 +162,22 @@ class _HomeViewState extends State<HomeView> {
                     children:
                         apiController.teslaNewsList10
                             .map(
-                              (element) => NewsDayItem(
-                                title: element.title,
-                                image:
-                                    element.urlToImage ??
-                                    'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.gettyimages.in%2Fphotos%2Fbreaking-news-newspaper&psig=AOvVaw190E6bxGMk7m4Y2wjxhpZY&ust=1745490183549000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCMji7OX37YwDFQAAAAAdAAAAABAE',
-                                author: element.author ?? 'Unknown',
-                                tag: 'General',
-                                time: element.publishedAt.toString().substring(
-                                  10,
-                                  18,
+                              (element) => GestureDetector(
+                                onTap: () => Get.to(NewsDetailsView(model: element)),
+                                child: NewsDayItem(
+                                  title: element.title,
+                                  image:
+                                      element.urlToImage ??
+                                      'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.gettyimages.in%2Fphotos%2Fbreaking-news-newspaper&psig=AOvVaw190E6bxGMk7m4Y2wjxhpZY&ust=1745490183549000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCMji7OX37YwDFQAAAAAdAAAAABAE',
+                                  author: element.author ?? 'Unknown',
+                                  tag: 'General',
+                                  time: element.publishedAt.toString().substring(
+                                    10,
+                                    18,
+                                  ),
+                                  dec: element.description ?? 'No description',
+                                  cont: element.content ?? 'No content',
                                 ),
-                                dec: element.description ?? 'No description',
-                                cont: element.content ?? 'No content',
                               ),
                             )
                             .toList(),
@@ -206,7 +209,7 @@ class _HomeViewState extends State<HomeView> {
                                       title: '${e.title}',
                                       image: '${e.urlToImage}',
                                       author: '${e.author ?? 'Unknown'}',
-                                      tag: 'publishedAt',
+
                                       time: e.publishedAt.toString().substring(
                                         12,
                                         18,

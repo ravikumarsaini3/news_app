@@ -5,6 +5,7 @@ import 'package:news/data/services/news_services.dart';
 import '../components/news_of_day_item.dart';
 import '../components/simmar.dart';
 import '../data/controller/api_controller.dart';
+import 'news_details_view.dart';
 
 class ArticalView extends StatefulWidget {
   ArticalView({super.key});
@@ -83,17 +84,20 @@ class _ArticalViewState extends State<ArticalView> {
                   itemCount: filter.length,
                   itemBuilder: (context, index) {
                     final element = filter.toList()[index];
-                    return NewsDayItem(
-                      title: element.title??'No title',
-                      image:
-                          element.urlToImage ??
-                          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQoFRQjM-wM_nXMA03AGDXgJK3VeX7vtD3ctA&s',
+                    return GestureDetector(
+                      onTap: () => Get.to(NewsDetailsView(model: element,)),
+                      child: NewsDayItem(
+                        title: element.title??'No title',
+                        image:
+                            element.urlToImage ??
+                            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQoFRQjM-wM_nXMA03AGDXgJK3VeX7vtD3ctA&s',
 
-                      author: element.author,
-                      tag: 'General',
-                      time: element.publishedAt.toString().substring(0, 18),
-                      dec: element.description,
-                      cont: element.content,
+                        author: element.author,
+                        tag: 'General',
+                        time: element.publishedAt.toString().substring(10, 18),
+                        dec: element.description,
+                        cont: element.content,
+                      ),
                     );
                   },
                 );
